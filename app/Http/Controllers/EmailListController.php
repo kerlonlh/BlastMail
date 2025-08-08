@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\EmailList;
+use App\Models\Subscriber;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
@@ -15,8 +16,10 @@ class EmailListController extends Controller
      */
     public function index()
     {
+        $emailLists = EmailList::query()->paginate();
+
         return view('email-list.index', [
-            'emailLists' => EmailList::query()->paginate(),
+            'emailLists' => $emailLists,
         ]);
     }
 
