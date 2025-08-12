@@ -9,7 +9,7 @@
     <x-card class="space-y-4">
 
         <div class="flex justify-between">
-            <x-button.link :href="route('subscribers.index', $emailList)">
+            <x-button.link :href="route('subscribers.create', $emailList)">
                 {{ __('Add a new subscriber') }}
             </x-button.link>
 
@@ -39,7 +39,7 @@
                                 </x-form>
                             @else
                                 <x-badge danger>
-                                    {{ __('Delete') }}
+                                    {{ __('Deleted') }}
                                 </x-badge>
                             @endunless
 
