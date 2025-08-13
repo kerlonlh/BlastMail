@@ -19,6 +19,10 @@
                     <x-nav-link :href="route('email-list.index')" :active="request()->routeIs('email-list.*')">
                         {{ __('Email List') }}
                     </x-nav-link>
+
+                    <x-nav-link :href="route('template.index')" :active="request()->routeIs('template.*')">
+                        {{ __('Templates') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -82,8 +86,13 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+
             <x-responsive-nav-link :href="route('email-list.index')" :active="request()->routeIs('email-list.*')">
                 {{ __('Email List') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('template.index')" :active="request()->routeIs('template.*')">
+                {{ __('Templates') }}
             </x-responsive-nav-link>
         </div>
 
