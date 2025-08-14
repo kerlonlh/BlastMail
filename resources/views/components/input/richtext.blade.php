@@ -11,7 +11,7 @@
     init() {
         let quill = new Quill(this.$refs.quill, { theme: 'snow' });
         quill.root.innerHTML = this.value;
-        quill.on('text.change', () => this.value = quill.root.innerHTML);
+        quill.on('text-change', () => this.value = quill.root.innerHTML);
     },
 }">
     <input type="hidden" name="{{ $name }}" x-model="value" class="bg-zinc-950" />

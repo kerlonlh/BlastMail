@@ -37,7 +37,7 @@ class TemplateController extends Controller
 
     public function store(Request $request)
     {
-        dd($request);
+
         $data = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'body' => ['required'],
