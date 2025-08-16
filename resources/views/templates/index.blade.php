@@ -30,13 +30,14 @@
                         <x-table.td>{{ $template->name }}</x-table.td>
                         <x-table.td class="w-1">
                             <div class="flex items-center space-x-4">
-                                <x-button.link secondary :href="route('templates.show', $template)">
-                                    {{ __('Preview') }}
-                                </x-button.link>
-                                <x-button.link secondary :href="route('templates.edit', $template)">
-                                    {{ __('Edit') }}
-                                </x-button.link>
+
                                 @unless ($template->trashed())
+                                    <x-button.link secondary :href="route('templates.show', $template)">
+                                        {{ __('Preview') }}
+                                    </x-button.link>
+                                    <x-button.link secondary :href="route('templates.edit', $template)">
+                                        {{ __('Edit') }}
+                                    </x-button.link>
                                     <div>
                                         <x-form :action="route('templates.destroy', $template)" delete flat
                                             onsubmit="return confirm('{{ __('Are you sure you want to delete this template?') }}')">
@@ -46,6 +47,13 @@
                                         </x-form>
                                     </div>
                                 @else
+                                    <x-button.link secondary>
+                                        {{ __('Preview') }}
+                                    </x-button.link>
+                                    <x-button.link secondary>
+                                        {{ __('Edit') }}
+                                    </x-button.link>
+
                                     <x-badge danger>
                                         {{ __('Deleted') }}
                                     </x-badge>
