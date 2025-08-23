@@ -49,7 +49,7 @@ Route::middleware('auth')->group(function () {
         foreach ($campaign->emailList->subscribers as $subscriber) {
             Mail::to($subscriber->email)
                 ->later(
-                    Carbon::parse($campaign->send_at),
+                    $campaign->send_at,
                     new EmailCampaign($campaign)
                 );
         }

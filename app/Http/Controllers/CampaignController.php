@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Database\Eloquent\Builder;
 use App\Http\Requests\CampaignStoreRequest;
+use App\Jobs\SendEmailCampaign;
 use Carbon\Carbon;
 use Illuminate\Support\Traits\Conditionable;
 
@@ -90,13 +91,7 @@ class CampaignController extends Controller
         if ($tab == 'schedule') {
             $campaign = Campaign::create($data);
 
-            foreach ($campaign->emailList->subscribers as $subscriber) {
-                Mail::to($subscriber->email)
-                    ->later(
-                        Carbon::parse($campaign->send_at),
-                        new EmailCampaign($campaign)
-                    );
-            }
+            SendEmailCampaign::dispatchAfterResponse($campaign);
         }
 
         return response()->redirectTo($toRoute);
