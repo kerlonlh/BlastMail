@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Database\Eloquent\Builder;
 use App\Http\Requests\CampaignStoreRequest;
+use Carbon\Carbon;
 use Illuminate\Support\Traits\Conditionable;
 
 class CampaignController extends Controller
@@ -90,7 +91,11 @@ class CampaignController extends Controller
             $campaign = Campaign::create($data);
 
             foreach ($campaign->emailList->subscribers as $subscriber) {
-                Mail::to($subscriber->email)->send(new EmailCampaign($campaign));
+                Mail::to($subscriber->email)
+                    ->later(
+                        Carbon::parse($campaign->send_at),
+                        new EmailCampaign($campaign)
+                    );
             }
         }
 
