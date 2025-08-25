@@ -17,6 +17,7 @@ use Illuminate\Support\Traits\Conditionable;
 class CampaignController extends Controller
 {
     use Conditionable;
+
     public function index()
     {
         $search = request()->get('search', null);
@@ -36,6 +37,12 @@ class CampaignController extends Controller
             'search' => $search,
             'withTrashed' => $withTrashed,
         ]);
+    }
+
+    public function show(Campaign $campaign, string $what)
+    {
+        abort_unless(in_array($what, ['statistics', 'clicked', 'open']), 404);
+        return view('campaigns.show.' . $what);
     }
 
     public function create(?string $tab = null)

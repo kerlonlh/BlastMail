@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class CompaignCreateSessionControl
+class CampaignCreateSessionControl
 {
 
     public function handle(Request $request, Closure $next): Response
