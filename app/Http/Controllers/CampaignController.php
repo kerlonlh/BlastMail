@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CampaignShowRequest;
 use App\Models\Campaign;
 use App\Models\Template;
 use App\Models\EmailList;
@@ -39,13 +40,12 @@ class CampaignController extends Controller
         ]);
     }
 
-    public function show(Campaign $campaign, ?string $what = null)
+    public function show(CampaignShowRequest $request, Campaign $campaign, ?string $what = null)
     {
+
         if (is_null($what)) {
             return to_route('campaigns.show', ['campaign' => $campaign, 'what' => 'statistics']);
         }
-        abort_unless(in_array($what, ['statistics', 'clicked', 'open']), 404);
-
 
         $search = request()->search;
 
