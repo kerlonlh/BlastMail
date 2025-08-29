@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+
 use App\Models\User;
 use App\Models\EmailList;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -21,6 +22,7 @@ class DatabaseSeeder extends Seeder
             TemplateSeeder::class,
             EmailListSeeder::class,
             CampaignSeeder::class,
+            CampaignMailSeeder::class
         ]);
     }
 }

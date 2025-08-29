@@ -9,12 +9,19 @@ class CampaignShowRequest extends FormRequest
     /**
      * Determine if the user is authorized to make this request.
      */
-    public function authorize(): bool
+
+    public function checkWhat()
     {
+        if (is_null($this->route('what'))) {
+            return to_route('campaigns.show', ['campaign' => $this->route('campaign'), 'what' => 'statistics']);
+        }
+    }
+    public function authorize()
+    {
+        $campaign = $this->route('campaign');
+        $what = $this->route('what') ?: 'statistics';
 
-        $what = $this->route('what');
-
-        abort_unless(in_array($what, [null, 'statistics', 'clicked', 'open']), 404);
+        abort_unless(in_array($what, ['statistics', 'clicked', 'open']), 404);
 
         return true;
     }
